@@ -4,33 +4,14 @@ session_start();
 require_once 'models/UserModel.php';
 $userModel = new UserModel();
 
-$user = NULL; //Add new user
+$user = NULL; 
 $_id = NULL;
-
-// Hàm giải mã ID
-function decodeId($encodedId) {
-    return base64_decode($encodedId); // Giải mã ID
-}
-
 
 if (!empty($_GET['id'])) {
     $encodedId = $_GET['id']; // Lấy ID đã mã hóa từ URL
-    $_id = decodeId($encodedId); // Giải mã ID
+    $_id = decodeId($encodedId); 
     $user = $userModel->findUserById($_id);//Update existing user
 }
-
-
-
-
-// if (!empty($_POST['submit'])) {
-
-//     if (!empty($_id)) {
-//         $userModel->updateUser($_POST);
-//     } else {
-//         $userModel->insertUser($_POST);
-//     }
-//     header('location: list_users.php');
-// }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $result = $userModel->updateUser($_POST);
@@ -45,7 +26,42 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         header('Location: list_users.php');
     }
 }
+function encodeId($id) {
+    return base64_encode($id);
+}
 
+function decodeId($encodedId) {
+    return base64_decode($encodedId);
+}
+
+if (!empty($_POST['submit'])) {
+    $errors = [];
+
+    // Validate Name
+    if (empty($_POST['name'])) {
+        $errors[] = "Name is required.";
+    } elseif (!preg_match('/^[A-Za-z0-9]{5,15}$/', $_POST['name'])) {
+        $errors[] = "Name must be between 5 and 15 characters and contain only letters and numbers.";
+    }
+
+    // Validate Password
+    if (empty($_POST['password'])) {
+        $errors[] = "Password is required.";
+    } elseif (!preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[~!@#$%^&*()]).{5,10}$/', $_POST['password'])) {
+        $errors[] = "Password must be 5 to 10 characters long and include at least one lowercase letter, one uppercase letter, one number, and one special character.";
+    }
+
+    
+    if (empty($errors)) {
+        if (!empty($_id)) {
+            $userModel->updateUser($_POST);
+        } else {
+            $userModel->insertUser($_POST);
+        }
+        header('location: list_users.php');
+        exit;
+    }
+}
 
 
 ?>
@@ -55,6 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>User form</title>
     <?php include 'views/meta.php' ?>
 </head>
+
 <body>
     <?php include 'views/header.php'?>
     <div class="container">
@@ -83,4 +100,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <?php } ?>
     </div>
 </body>
+<script>
+function validateForm() {
+    let name = document.forms["updateForm"]["name"].value;
+    let password = document.forms["updateForm"]["password"].value;
+
+    // Validate name
+    const nameRegex = /^[a-zA-Z0-9]{5,15}$/;
+    if (name === "") {
+        alert("Name is required.");
+        return false;
+    }
+    if (!nameRegex.test(name)) {
+        alert("Name must be 5-15 characters long and can only contain letters and numbers.");
+        return false;
+    }
+
+    // Validate password
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[~!@#$%^&*()])[A-Za-z\d~!@#$%^&*()]{5,10}$/;
+    if (password === "") {
+        alert("Password is required.");
+        return false;
+    }
+    if (!passwordRegex.test(password)) {
+        alert("Password must be 5-10 characters long, contain lowercase, uppercase, number, and special character.");
+        return false;
+    }
+
+    return true; // Allow form submission if all validation passes
+}
+</script>
 </html>
