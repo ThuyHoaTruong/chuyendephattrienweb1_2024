@@ -1,0 +1,133 @@
+.type-3011 .main1 {
+  background: url(../images/bg_img_1.png), url(../images/bg_img_2.png);
+  background-color: #343b83;
+  background-repeat: no-repeat;
+  background-position: left bottom, right top;
+  background-size: 20%;
+  padding: 80px 0 90px 0px;
+  margin-bottom: 50px;
+}
+.type-3011 .main1 .main1_title {
+  position: relative;
+  left: 50%;
+  width: 40%;
+  transform: translateX(-50%);
+  text-align: center;
+}
+.type-3011 .main1 .main1_title h1 {
+  color: #fff;
+  font-size: 48px;
+}
+.type-3011 .main1 .main1_title h4 {
+  color: #fff;
+  font-size: 25px;
+  font-family: "Figtree", Sans-serif;
+  font-weight: 500;
+  line-height: 1.3em;
+}
+.type-3011 .main2 {
+  background-size: 600px 600px;
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  position: relative;
+  background-color: rgba(224,217,217,0.1);
+}
+.type-3011 .main2 .bg {
+  filter: grayscale();
+  opacity: 0.1;
+  background: url(../images/bg_img_3.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+  width: 580px;
+  height: 580px;
+  position: absolute;
+  top: -50px;
+  border-radius: 50%;
+  z-index: -1;
+  left: 47%;
+  transform: translateX(-47%);
+}
+.type-3011 .main2 .content {
+  display: grid;
+  grid-template-columns: 30% 40% 30%;
+  width: 100%;
+  padding: 0 7%;
+}
+.type-3011 .main2 .content1 {
+  position: relative;
+  top: 5%;
+}
+.type-3011 .main2 .content1 h6 {
+  color: #68C419;
+  font-family: "Figtree", Sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  margin: 0;
+  padding-top: 100px;
+}
+.type-3011 .main2 .content1 h2 {
+  color: #343B83;
+  font-family: "Lexend", sans-serif;
+  font-size: 39px;
+  font-weight: 600;
+  line-height: 1.2em;
+  letter-spacing: -1px;
+}
+.type-3011 .main2 .content1 p {
+  padding: 20px 0px 30px 0px;
+  color: #666;
+}
+.type-3011 .main2 .content1 a {
+  padding: 10px 20px;
+  background: #68C419;
+  color: #fff;
+  border-radius: 5px;
+  text-decoration: none;
+}
+.type-3011 .main2 .content1 a:hover {
+  background: #058FFC;
+}
+.type-3011 .main2 .content2 {
+  background: url(../images/smartphone_img.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  width: 115%;
+  height: 110%;
+  position: relative;
+  top: 10%;
+}
+.type-3011 .main2 .content3 {
+  padding-top: 145px;
+}
+.type-3011 .main2 .content3 .item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 40px;
+}
+.type-3011 .main2 .content3 .item .icon-item {
+  height: 70px;
+  width: 100px;
+  border-radius: 50%;
+  display: flex;
+  background: #68C419;
+  align-items: center;
+  justify-content: center;
+  margin-right: 15px;
+}
+.type-3011 .main2 .content3 .item .icon-item i {
+  font-size: 24px;
+  color: #fff;
+}
+.type-3011 .main2 .content3 .item .text-item h3 {
+  margin: 0;
+  font-size: 20px;
+  color: #343B83;
+  font-weight: 600;
+}
+.type-3011 .main2 .content3 .item .text-item p {
+  margin: 5px 0 0;
+  color: #666;
+  font-size: 16px;
+}
